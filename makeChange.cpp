@@ -57,6 +57,9 @@ int main(){
         inFile >> k;
         inFile >> n;
 
+        //testing
+        cout << "Running test with values: ", c, k, n;
+
         // Call function to make denom[] array with coin values
        // setDenomArr(c, k, denom);
 
@@ -96,34 +99,11 @@ int makeChange(int * denom, int c, int n, int k){
     for (int i = 0; i <= k; i++){
         denom[i] = int_pow(c, i);
     }
-
-    // traverse through coin denominations
-    // begin at i=k which is largest coin denom and traverse
-    // to i = 0 which is owest denom value
-    
-    for (int i = k; i >= 0; i--){
-
-        // counter for frequency of each coin
-        int j = 0;
-
-        // while n is greater than current coin denomination value 
-        while (n >= denom[i]) { 
-            n -= denom[i];
-            // count freq of current coin in solution
-            j++;
-        }
-    ofstream outFile;
-  
-    outFile.open("change.txt");
-    outFile<<"\nDenomination: ", denom[i] ," Quantity: ", j;
-    }
-    
-    outFile.close();
     
     //output file
-    //ofstream outFile;
+    ofstream outFile;
 
-   /* // open the output file, usse flag to open and write at end of the file
+    // open the output file, usse flag to open and write at end of the file
     outFile.open("change.txt", ios::app);
     
     // traverse through coin denominations
@@ -141,10 +121,11 @@ int makeChange(int * denom, int c, int n, int k){
             j++;
         }
         
-        outFile<<"\nDenomination: ", denom[i] ," Quantity: ", j;
+        outFile <<"\nDenomination: ", denom[i] ," Quantity: ", j;
+        cout <<"\nDenomination: ", denom[i] ," Quantity: ", j;
     }
 
-    outFile.close(); */
+    outFile.close();
 
 }
 
