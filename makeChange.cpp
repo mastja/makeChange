@@ -57,15 +57,8 @@ int main(){
         inFile >> k;
         inFile >> n;
 
-        //testing
-        cout << "Running test with values: " << c << k << n;
-
-        // Call function to make denom[] array with coin values
-       // setDenomArr(c, k, denom);
-
-        // Print first line of output, then close file
-        outFile<<"Data Input: c = " << c << " k = " << k << " n = ", n;
-        outFile.close();
+        // Print update message to screen
+        cout << "Data Input: c = " << c << ", k = " << k << ", n = " << n;
 
         // Call function using input from the current line from the data.txt file
         makeChange(denom, c, n, k);
@@ -103,12 +96,15 @@ int makeChange(int * denom, int c, int n, int k){
     //output file
     ofstream outFile;
 
+    // Print first line of output, then close file
+    outFile<<"Data Input: c = " << c << ", k = " << k << ", n = " << n;
+
     // open the output file, usse flag to open and write at end of the file
     outFile.open("change.txt", ios::app);
     
     // traverse through coin denominations
     // begin at i=k which is largest coin denom and traverse
-    // to i = 0 which is owest denom value
+    // to i = 0 which is lowest denom value
     for (int i = k; i >= 0; i--) { 
 
         // counter for frequency of each coin
@@ -131,24 +127,12 @@ int makeChange(int * denom, int c, int n, int k){
         }
     }
 
+    // go to next line in outFile then close
     outFile << endl;
-    cout << endl;
     outFile.close();
 
 }
 
-/* The function below sets the denom[] array with values according to the
-input passed. The array has values c^0, c^1, c^2, ..., c^k. 
-
-void setDenomArr(int c, int k, int * denom){
-
-    // loop for k + 1 times, call int pow function which finds the 
-    // integer exponent of an integer
-    for (int i = 0; i < k + 1; i++){
-        denom[i] = int_pow(c, i);
-    }
-}
-*/
 
 /* The function below completes integer exponentiation using the recursive
 divide and conquer method
