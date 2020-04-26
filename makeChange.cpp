@@ -37,7 +37,7 @@ int main(){
     // declare variables
     // c, n, and k variables correspond to the same values in the prompt
     int c, n, k = 0;
-    // pointer to an int, to be used for dynamically allocating an array
+    // dynamically allocate new array
     int * denom = NULL;
     // input file
     ifstream inFile;
@@ -55,23 +55,26 @@ int main(){
     outFile.open("change.txt");
 
     // Read c value, test cases from input file
-    while (!infile.eof( )){
-       inFile >> c;
-       inFile >> k;
-       inFile >> n;
+    while (!inFile.eof( )){
+        inFile >> c;
+        inFile >> k;
+        inFile >> n;
 
-        // Call function to make denom[] array of coin values
-        setDenomArr(c, k, *denom);
+        // set denom array size
+        denom = new int [k + 1];
+
+        // Call function to make denom[] array with coin values
+        setDenomArr(c, k, denom);
 
         // Print first line of output, then close file
         outFile<<"Data Input: c = ", c ," k = ", k , " n = ", n;
         outFile.close();
 
         // Call function using input from the current line from the data.txt file
-        makeChange(*denom, n, k);
+        makeChange(denom, n, k);
 
         // call function to clear/delete denom[] array
-        deleteDenomArr(*denom);
+        deleteDenomArr(denom);
     }
 
     // close the opened file
@@ -124,7 +127,6 @@ int makeChange(int * denom, int n, int k){
 input passed. The array has values c^0, c^1, c^2, ..., c^k. */
 
 void setDenomArr(int c, int k, int * denom){
-    denom = new int [k + 1];
 
     // loop for k + 1 times, call int pow function which finds the 
     // integer exponent of an integer
@@ -156,7 +158,7 @@ int int_pow(int base, int exponent){
         return 1;
 
     // recursive step
-    int temp = power(base, exponent/2);
+    int temp = int_pow(base, exponent/2);
     
     // if exponent is even
     if (exponent % 2 == 0)
