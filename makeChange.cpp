@@ -123,8 +123,8 @@ int makeChange(int * denom, int c, int n, int k){
     }
 
     // go to next line in outFile then close
-    outFile << "/n" << endl;
-    cout << "/n" << endl;
+    outFile << "\n" << endl;
+    cout << "\n" << endl;
     outFile.close();
 
 }
