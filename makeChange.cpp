@@ -19,10 +19,10 @@
 using namespace std;
 
 // function drives the program, runs greedy method change making algorithm
-int makeChange(int * denom, int n, int k);
+int makeChange(int * denom, int c, int n, int k);
 
 // function sets denom[] array with values from data.txt file
-void setDenomArr(int c, int k, int * denom);
+//void setDenomArr(int c, int k, int * denom);
 
 // function solves integer exponentiation using recursive divide and conquer
 int int_pow(int base, int exponent);
@@ -57,18 +57,15 @@ int main(){
         inFile >> k;
         inFile >> n;
 
-        // set denom array size
-        denom = new int [k + 1];
-
         // Call function to make denom[] array with coin values
-        setDenomArr(c, k, denom);
+       // setDenomArr(c, k, denom);
 
         // Print first line of output, then close file
         outFile<<"Data Input: c = ", c ," k = ", k , " n = ", n;
         outFile.close();
 
         // Call function using input from the current line from the data.txt file
-        makeChange(denom, n, k);
+        makeChange(denom, c, n, k);
 
         // clear/delete denom[] array
         delete [] denom;
@@ -91,12 +88,42 @@ function opens the output file "change.txt" and adds output to end of that file.
 source citation: https://www.geeksforgeeks.org/greedy-algorithm-to-find-minimum-number-of-coins/
 */
 
-int makeChange(int * denom, int n, int k){
+int makeChange(int * denom, int c, int n, int k){
 
-    //output file
+    // set denom array size
+    denom = new int [k + 2];
+    
+    for (int i = 0; i <= k; i++){
+        denom[i] = int_pow(c, i);
+    }
+
+    // traverse through coin denominations
+    // begin at i=k which is largest coin denom and traverse
+    // to i = 0 which is owest denom value
+    
+    for (int i = k; i >= 0; i--){
+
+        // counter for frequency of each coin
+        int j = 0;
+
+        // while n is greater than current coin denomination value 
+        while (n >= denom[i]) { 
+            n -= denom[i];
+            // count freq of current coin in solution
+            j++;
+        }
     ofstream outFile;
+  
+    outFile.open("change.txt");
+    outFile<<"\nDenomination: ", denom[i] ," Quantity: ", j;
+    }
+    
+    outFile.close();
+    
+    //output file
+    //ofstream outFile;
 
-    // open the output file, usse flag to open and write at end of the file
+   /* // open the output file, usse flag to open and write at end of the file
     outFile.open("change.txt", ios::app);
     
     // traverse through coin denominations
@@ -117,12 +144,12 @@ int makeChange(int * denom, int n, int k){
         outFile<<"\nDenomination: ", denom[i] ," Quantity: ", j;
     }
 
-    outFile.close();
+    outFile.close(); */
 
 }
 
 /* The function below sets the denom[] array with values according to the
-input passed. The array has values c^0, c^1, c^2, ..., c^k. */
+input passed. The array has values c^0, c^1, c^2, ..., c^k. 
 
 void setDenomArr(int c, int k, int * denom){
 
@@ -132,7 +159,7 @@ void setDenomArr(int c, int k, int * denom){
         denom[i] = int_pow(c, i);
     }
 }
-
+*/
 
 /* The function below completes integer exponentiation using the recursive
 divide and conquer method
