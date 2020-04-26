@@ -56,7 +56,6 @@ int main(){
         inFile >> c;
         inFile >> k;
         inFile >> n;
-        }
 
         //testing
         cout << "Running test with values: " << c << k << n;
@@ -123,8 +122,12 @@ int makeChange(int * denom, int c, int n, int k){
         }
         
         if (j > 0){
-            outFile <<"\nDenomination: " << denom[i] << " Quantity: ", j;
-            cout <<"\nDenomination: " << denom[i] << " Quantity: ", j;
+            outFile <<"\nDenomination: " << denom[i] << " Quantity: " << j;
+            cout <<"\nDenomination: " << denom[i] << " Quantity: " << j;
+        }
+        if (j == 0){
+            outFile <<"\nDenomination: " << denom[i] << " Quantity: none";
+            cout <<"\nDenomination: " << denom[i] << " Quantity: none";
         }
     }
 
