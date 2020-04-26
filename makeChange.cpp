@@ -52,26 +52,20 @@ int main(){
     outFile.open("change.txt");
 
     // Read c value, test cases from input file
-    while (inFile >> x){
-        if (i == 0){
-            c = x;
-        }
-        else if (i == 1){
-            k = x;
-        }
-        else{
-            n = x;
-            i = 0;
+    while (!inFile.eof( )){
+        inFile >> c;
+        inFile >> k;
+        inFile >> n;
         }
 
         //testing
-        cout << "Running test with values: ", c, k, n;
+        cout << "Running test with values: " << c << k << n;
 
         // Call function to make denom[] array with coin values
        // setDenomArr(c, k, denom);
 
         // Print first line of output, then close file
-        outFile<<"Data Input: c = ", c ," k = ", k , " n = ", n;
+        outFile<<"Data Input: c = " << c << " k = " << k << " n = ", n;
         outFile.close();
 
         // Call function using input from the current line from the data.txt file
@@ -128,10 +122,14 @@ int makeChange(int * denom, int c, int n, int k){
             j++;
         }
         
-        outFile<<"\nDenomination: ", denom[i] ," Quantity: ", j;
-        cout <<"\nDenomination: ", denom[i] ," Quantity: ", j;
+        if (j > 0){
+            outFile <<"\nDenomination: " << denom[i] << " Quantity: ", j;
+            cout <<"\nDenomination: " << denom[i] << " Quantity: ", j;
+        }
     }
 
+    outFile << endl;
+    cout << endl;
     outFile.close();
 
 }
