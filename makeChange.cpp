@@ -57,9 +57,6 @@ int main(){
         inFile >> k;
         inFile >> n;
 
-        // Print update message to screen
-        cout << "Data Input: c = " << c << ", k = " << k << ", n = " << n;
-
         // Call function using input from the current line from the data.txt file
         makeChange(denom, c, n, k);
 
@@ -96,11 +93,13 @@ int makeChange(int * denom, int c, int n, int k){
     //output file
     ofstream outFile;
 
-    // Print first line of output, then close file
-    outFile<<"Data Input: c = " << c << ", k = " << k << ", n = " << n;
-
     // open the output file, usse flag to open and write at end of the file
     outFile.open("change.txt", ios::app);
+
+    // Print first line of output
+    outFile<<"Data Input: c = " << c << ", k = " << k << ", n = " << n;
+    // Print update message to screen
+    cout << "Data Input: c = " << c << ", k = " << k << ", n = " << n;
     
     // traverse through coin denominations
     // begin at i=k which is largest coin denom and traverse
@@ -129,6 +128,7 @@ int makeChange(int * denom, int c, int n, int k){
 
     // go to next line in outFile then close
     outFile << endl;
+    cout << endl;
     outFile.close();
 
 }
