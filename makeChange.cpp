@@ -21,12 +21,8 @@ using namespace std;
 // function drives the program, runs greedy method change making algorithm
 int makeChange(int * denom, int c, int n, int k);
 
-// function sets denom[] array with values from data.txt file
-//void setDenomArr(int c, int k, int * denom);
-
 // function solves integer exponentiation using recursive divide and conquer
 int int_pow(int base, int exponent);
-
 
 
 int main(){
@@ -127,12 +123,11 @@ int makeChange(int * denom, int c, int n, int k){
     }
 
     // go to next line in outFile then close
-    outFile << endl;
-    cout << endl;
+    outFile << "/n" << endl;
+    cout << "/n" << endl;
     outFile.close();
 
 }
-
 
 /* The function below completes integer exponentiation using the recursive
 divide and conquer method
