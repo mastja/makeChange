@@ -33,7 +33,7 @@ int main(){
 
     // declare variables
     // c, n, and k variables correspond to the same values in the prompt
-    int c, n, k = 0;
+    int c, n, k, x, i= 0;
     // dynamically allocate new array
     int * denom = NULL;
     // input file
@@ -52,10 +52,17 @@ int main(){
     outFile.open("change.txt");
 
     // Read c value, test cases from input file
-    while (!inFile.eof( )){
-        inFile >> c;
-        inFile >> k;
-        inFile >> n;
+    while (inFile >> x){
+        if (i == 0){
+            c = x;
+        }
+        else if (i == 1){
+            k = x;
+        }
+        else{
+            n = x;
+            i = 0;
+        }
 
         //testing
         cout << "Running test with values: ", c, k, n;
@@ -121,7 +128,7 @@ int makeChange(int * denom, int c, int n, int k){
             j++;
         }
         
-        outFile <<"\nDenomination: ", denom[i] ," Quantity: ", j;
+        outFile<<"\nDenomination: ", denom[i] ," Quantity: ", j;
         cout <<"\nDenomination: ", denom[i] ," Quantity: ", j;
     }
 
