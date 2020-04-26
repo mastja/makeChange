@@ -24,9 +24,6 @@ int makeChange(int * denom, int n, int k);
 // function sets denom[] array with values from data.txt file
 void setDenomArr(int c, int k, int * denom);
 
-// function sets denom[] array with values from data.txt file
-void deleteDenomArr(int * denom);
-
 // function solves integer exponentiation using recursive divide and conquer
 int int_pow(int base, int exponent);
 
@@ -73,8 +70,9 @@ int main(){
         // Call function using input from the current line from the data.txt file
         makeChange(denom, n, k);
 
-        // call function to clear/delete denom[] array
-        deleteDenomArr(denom);
+        // clear/delete denom[] array
+        delete [] denom;
+        denom = NULL; 
     }
 
     // close the opened file
@@ -135,12 +133,6 @@ void setDenomArr(int c, int k, int * denom){
     }
 }
 
-/* The function below clears the memory for/deletes the denom[] array  */
-
-void deleteDenomArr(int c, int k, int * denom){
-    delete [] denom;
-    denom = NULL; 
-}
 
 /* The function below completes integer exponentiation using the recursive
 divide and conquer method
